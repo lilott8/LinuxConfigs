@@ -1,12 +1,3 @@
-" URL: http://vim.wikia.com/wiki/Example_vimrc
-" Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
-" Description: A minimal, but feature rich, example .vimrc. If you are a
-"              newbie, basing your first .vimrc on this file is a good
-" choice.
-"              If you're a more advanced user, building your own .vimrc
-" based
-"              on this file is still a good idea.
-"
 "------------------------------------------------------------
 " Features {{{1
 "
@@ -25,7 +16,8 @@ filetype indent plugin on
 " Enable syntax highlighting
 syntax on
 
-
+colorscheme gruvbox
+set background=dark
 "------------------------------------------------------------
 " Must have options {{{1
 
@@ -126,7 +118,7 @@ set visualbell
 set t_vb=
 
 " Enable use of the mouse for all modes
-set mouse=a
+"set mouse=a
 "
 " Set the command window height to 2 lines, to avoid many cases of having to
 " press <Enter> to continue"
@@ -180,3 +172,8 @@ if version >= 700
       au InsertLeave * highlight StatusLine cterm=bold ctermfg=black ctermbg=white
         au InsertEnter * highlight StatusLine cterm=bold ctermfg=black ctermbg=green
       endif
+
+" Make vim remember where we stopped last time!
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  endif
